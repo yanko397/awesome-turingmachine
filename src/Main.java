@@ -17,6 +17,10 @@ public class Main {
 	public static void main(String[] args) {
 		
 		exampleFromTheLecture();
+		
+		FileManager fm = new FileManager("transitions.txt");
+		transitions = new ArrayList<Transition>();
+		transitions = fm.readTransitions();
 		print();
 		
 		tm = new TuringMachine(states, inputSymbols, workSymbols, transitions, blank, initialState, accept, reject);
@@ -27,6 +31,15 @@ public class Main {
 		System.out.println("\nAccepted: " + accepted);
 		System.out.println("\nOutput: " + (output.isEmpty() ? "[Empty]" : output));
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	public static void print() {
 		
@@ -59,28 +72,6 @@ public class Main {
 		workSymbols = new ArrayList<Symbol>(inputSymbols);
 		workSymbols.add(new Symbol('0'));	//2
 
-		transitions = new ArrayList<Transition>();
-
-		transitions.add(new Transition(states.get(0), workSymbols.get(0), states.get(2), workSymbols.get(2), Direction.RIGHT));
-		transitions.add(new Transition(states.get(0), workSymbols.get(1), states.get(4), workSymbols.get(2), Direction.RIGHT));
-		transitions.add(new Transition(states.get(0), workSymbols.get(2), states.get(6), workSymbols.get(2), Direction.STAY));
-		
-		transitions.add(new Transition(states.get(2), workSymbols.get(0), states.get(2), workSymbols.get(0), Direction.RIGHT));
-		transitions.add(new Transition(states.get(2), workSymbols.get(1), states.get(2), workSymbols.get(1), Direction.RIGHT));
-		transitions.add(new Transition(states.get(2), workSymbols.get(2), states.get(3), workSymbols.get(2), Direction.LEFT));
-		
-		transitions.add(new Transition(states.get(4), workSymbols.get(0), states.get(4), workSymbols.get(0), Direction.RIGHT));
-		transitions.add(new Transition(states.get(4), workSymbols.get(1), states.get(4), workSymbols.get(1), Direction.RIGHT));
-		transitions.add(new Transition(states.get(4), workSymbols.get(2), states.get(5), workSymbols.get(2), Direction.LEFT));
-		
-		transitions.add(new Transition(states.get(3), workSymbols.get(0), states.get(1), workSymbols.get(2), Direction.LEFT));
-		
-		transitions.add(new Transition(states.get(5), workSymbols.get(1), states.get(1), workSymbols.get(2), Direction.LEFT));
-		
-		transitions.add(new Transition(states.get(1), workSymbols.get(0), states.get(1), workSymbols.get(0), Direction.LEFT));
-		transitions.add(new Transition(states.get(1), workSymbols.get(1), states.get(1), workSymbols.get(1), Direction.LEFT));
-		transitions.add(new Transition(states.get(1), workSymbols.get(2), states.get(0), workSymbols.get(2), Direction.RIGHT));
-		
 		blank = workSymbols.get(workSymbols.size()-1);
 		
 		initialState = states.get(0);
