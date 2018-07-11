@@ -1,0 +1,38 @@
+
+// this tm inverts an input consisting of 'a' and 'b'
+
+initial: 0
+
+blank: 0
+
+accept: +
+
+reject: -
+
+0,a-0,a,right
+0,b-0,b,right
+0,0-1,0,left
+
+1,a-a,*,right
+1,b-b,*,right
+1,*-1,*,left
+
+1,0-2,0,right
+a,0-*,a,left
+b,0-*,b,left
+
+a,a-a,a,right
+a,b-a,b,right
+a,*-a,*,right
+
+b,a-b,a,right
+b,b-b,b,right
+b,*-b,*,right
+
+*,a-*,a,left
+*,b-*,b,left
+*,*-1,*,left
+
+2,a-+,a,stay
+2,b-+,b,stay
+2,*-2,0,right

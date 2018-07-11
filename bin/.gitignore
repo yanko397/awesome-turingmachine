@@ -1,8 +1,4 @@
-/Direction.class
-/Main.class
-/State.class
-/Symbol.class
-/Tape.class
-/Transition.class
-/TuringMachine.class
-/FileManager.class
+/transitions.txt
+/tm.txt
+/tm/
+/firsttm.txt
