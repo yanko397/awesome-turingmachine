@@ -13,21 +13,21 @@ import tm.part.Transition;
 
 public class FileManager {
 	
+	private File file;
+	private FileReader fileReader;
 	private BufferedReader br;
+	
 	private ArrayList<Transition> transitions;
 	private State initial;
 	private State accept;
 	private State reject;
 	private Symbol blank;
 	
-	public FileManager(String fileName) {
-		try {
-			File file = new File(fileName);
-			FileReader fileReader = new FileReader(file);
-			br = new BufferedReader(fileReader);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+	public FileManager(String fileName) throws FileNotFoundException {
+
+		file = new File(fileName);
+		fileReader = new FileReader(file);
+		br = new BufferedReader(fileReader);
 	}
 
 	public void readData() {
