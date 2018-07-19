@@ -156,6 +156,24 @@ public class FileManager {
 		}
 	}
 	
+	public static void printFileNotFound(String tmFileName) {
+		System.out.println("ERROR: File \"" + tmFileName + "\" not found.\n");
+		System.out.println("       Please create this file and define the turing machine in it similar to this:");
+		System.out.println();
+		System.out.println("          // This is a comment.");
+		System.out.println();
+		System.out.println("          blank: 0");
+		System.out.println("          initial: 0");
+		System.out.println("          accept: +");
+		System.out.println("          reject: -");
+		System.out.println();
+		System.out.println("          // There are several ways to define the transitions");
+		System.out.println();
+		System.out.println("          (A, a) -> (B, b, right)");
+		System.out.println("          A, a - B, b, stay");
+		System.out.println("          A,a,B,b,left");
+	}
+	
 	//======================== GETTERS AND SETTERS ========================//
 
 	public State getInitial() {

@@ -8,42 +8,34 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		String tmFileName = "tml.txt";
+		String tmFileName = "busybeaver.txt";
+		String word = "";
+		long timeoutMillis = 0;
+		boolean printContents = true;
+		boolean printOutput = false;
+		boolean printErrors = true;
 		
 		FileManager fm;
 		try {
 			fm = new FileManager(tmFileName);
 		} catch (FileNotFoundException e) {
-			System.out.println("ERROR: File \"" + tmFileName + "\" not found.\n");
-			System.out.println("       Please create this file and define the turing machine in it similar to this:");
-			System.out.println();
-			System.out.println("          // This is a comment.");
-			System.out.println();
-			System.out.println("          blank: 0");
-			System.out.println("          initial: 0");
-			System.out.println("          accept: +");
-			System.out.println("          reject: -");
-			System.out.println();
-			System.out.println("          // There are several ways to define the transitions");
-			System.out.println();
-			System.out.println("          (A, a) -> (B, b, right)");
-			System.out.println("          A, a - B, b, stay");
-			System.out.println("          A,a,B,b,left");
+			FileManager.printFileNotFound(tmFileName);
 			return;
 		}
 		fm.readData();
 		
 		TuringMachine tm = new TuringMachine(fm.getTransitions(), fm.getBlank(), fm.getInitial(), fm.getAccept(), fm.getReject());
-		tm.printContent();
+		if(printContents) tm.printContents();
 		if(args.length > 0)
 			tm.init(args[0]);
 		else
-			tm.init("bbaaa");
+			tm.init(word);
 		
-		boolean accepted = tm.run();
+		boolean accepted = tm.run(timeoutMillis, printOutput, printErrors);
 
-		String output = tm.getTapeContent().replaceAll("" + fm.getBlank().getName(), "");
-		System.out.println("\n Accepted: " + accepted);
-		System.out.println("\n Output: " + (output.isEmpty() ? "[Empty]" : output));
+		System.out.println("\n Accepted:      " + accepted);
+		System.out.println("\n Steps:         " + tm.getSteps());
+		System.out.println("\n Output:        " + tm.getOutput());
+		System.out.println("\n Output length: " + tm.getOutput().length());
 	}
 }
