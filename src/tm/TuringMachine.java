@@ -2,11 +2,11 @@ package tm;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
+import tm.component.State;
+import tm.component.Symbol;
+import tm.component.Tape;
+import tm.component.Transition;
 import tm.file.FileManager;
-import tm.part.State;
-import tm.part.Symbol;
-import tm.part.Tape;
-import tm.part.Transition;
 
 public class TuringMachine {
 	

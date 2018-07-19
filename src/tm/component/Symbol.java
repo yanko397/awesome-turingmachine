@@ -1,15 +1,15 @@
-package tm.part;
+package tm.component;
 
-public class State {
+public class Symbol {
 
 	private char name;
 	
-	public State(char name) {
+	public Symbol(char name) {
 		this.name = name;
 	}
 
 	//============================== GETTER UND SETTER ==============================//
-
+	
 	public char getName() {
 		return name;
 	}

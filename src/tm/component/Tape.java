@@ -1,4 +1,4 @@
-package tm.part;
+package tm.component;
 import java.util.ArrayList;
 
 public class Tape {

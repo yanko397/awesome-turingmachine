@@ -6,10 +6,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import tm.part.Direction;
-import tm.part.State;
-import tm.part.Symbol;
-import tm.part.Transition;
+import tm.component.Direction;
+import tm.component.State;
+import tm.component.Symbol;
+import tm.component.Transition;
 
 public class FileManager {
 	

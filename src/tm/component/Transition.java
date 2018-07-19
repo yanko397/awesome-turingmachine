@@ -1,4 +1,4 @@
-package tm.part;
+package tm.component;
 
 public class Transition {
 
