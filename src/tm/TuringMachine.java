@@ -2,6 +2,7 @@ package tm;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
+import tm.file.FileManager;
 import tm.part.State;
 import tm.part.Symbol;
 import tm.part.Tape;
@@ -19,9 +20,16 @@ public class TuringMachine {
 	private Tape tape;
 
 	private State currentState;
+	
+	public TuringMachine(FileManager fm) {
+		transitions = fm.getTransitions();
+		blank = fm.getBlank();
+		initial = fm.getInitial();
+		accept = fm.getAccept();
+		reject = fm.getReject();
+	}
 
 	public TuringMachine(ArrayList<Transition> transitions, Symbol blank, State initialState, State accept, State reject) {
-
 		this.transitions = transitions;
 		this.blank = blank;
 		this.initial = initialState;
@@ -89,37 +97,43 @@ public class TuringMachine {
 	private boolean readyToRun(boolean printErrors) {
 		
 		if(initial == null) {
-			if(printErrors) System.out.println(
-					  " ERROR: No initial state found.\n"
-					+ "        You can define it like this:\n"
-					+ "           initial: 0");
+			if(printErrors) {
+				System.out.println(" ERROR: No initial state found.");
+				System.out.println("        You can define it like this:");
+				System.out.println("           initial: 0");
+			}
 			return false;
 		}
 		if(accept == null) {
-			if(printErrors) System.out.println(
-					  " ERROR: No accepting state found.\n"
-					+ "        You can define it like this:\n"
-					+ "           accept: +");
+			if(printErrors) {
+				System.out.println(" ERROR: No accepting state found.");
+				System.out.println("        You can define it like this:");
+				System.out.println("           accept: +");
+			}
 			return false;
 		}
 		if(blank == null) {
-			if(printErrors) System.out.println(
-					  " ERROR: No blank symbol defined.\n"
-					+ "        You can define it like this:\n"
-					+ "           blank: 0");
+			if(printErrors) {
+				System.out.println(" ERROR: No blank symbol defined.");
+				System.out.println("        You can define it like this:");
+				System.out.println("           blank: 0");
+			}
 			return false;
 		}
 		if(transitions == null) {
-			if(printErrors) System.out.println(
-					  " ERROR: There is propably something wrong with the transitions.\n"
-					+ "        Try a format similar to one of these:\n"
-					+ "           (A, a) -> (B, b, right)\n"
-					+ "           A,a-B,b,left\n"
-					+ "           A, a, B, b, stay");
+			if(printErrors) {
+				System.out.println(" ERROR: There is propably something wrong with the transitions.");
+				System.out.println("        Try a format similar to one of these:");
+				System.out.println("           (A, a) -> (B, b, right)");
+				System.out.println("           A,a-B,b,left");
+				System.out.println("           A, a, B, b, stay");
+			}
 			return false;
 		}
 		if(reject == null) {
-			if(printErrors) System.out.println("\n WARNING: No rejecting state has been set.");
+			if(printErrors) {
+				System.out.println(" WARNING: No rejecting state has been set.");
+			}
 		}
 		return true;
 	}

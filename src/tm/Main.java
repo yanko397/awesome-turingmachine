@@ -24,8 +24,8 @@ public class Main {
 		}
 		fm.readData();
 		
-		TuringMachine tm = new TuringMachine(fm.getTransitions(), fm.getBlank(), fm.getInitial(), fm.getAccept(), fm.getReject());
-		if(printContents) tm.printContents();
+		TuringMachine tm = new TuringMachine(fm);
+		
 		if(args.length > 0)
 			tm.init(args[0]);
 		else
@@ -33,9 +33,10 @@ public class Main {
 		
 		boolean accepted = tm.run(timeoutMillis, printOutput, printErrors);
 
-		System.out.println("\n Accepted:      " + accepted);
-		System.out.println("\n Steps:         " + tm.getSteps());
-		System.out.println("\n Output:        " + tm.getOutput());
-		System.out.println("\n Output length: " + tm.getOutput().length());
+		if(printContents) tm.printContents();
+		System.out.println("\n Accepted:       " + accepted);
+		System.out.println("\n Steps:          " + tm.getSteps());
+		System.out.println("\n Output:         " + tm.getOutput());
+		System.out.println("\n Output length:  " + tm.getOutput().length());
 	}
 }
