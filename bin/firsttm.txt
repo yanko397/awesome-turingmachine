@@ -1,0 +1,30 @@
+
+// this file is for the input of a turing machine
+
+INITIAL: 0
+
+ACCEPT: +
+
+REJECT: -
+
+BLANK: 0
+
+0, a - A, 0, RIGHT
+0, b - B, 0, RIGHT
+0, 0 - +, 0, STAY
+
+A, a - A, a, RIGHT
+A, b - A, b, RIGHT
+A, 0 - Z, 0, LEFT
+
+B, a - B, a, RIGHT
+B, b - B, b, RIGHT
+B, 0 - Y, 0, LEFT
+
+Z, a - N, 0, LEFT
+
+Y, b - N, 0, LEFT
+
+N, a - N, a, LEFT
+N, b - N, b, LEFT
+N, 0 - 0, 0, RIGHT
